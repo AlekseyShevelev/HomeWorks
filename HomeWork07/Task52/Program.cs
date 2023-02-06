@@ -59,8 +59,9 @@ void PrintMatrix(int[,] matrix)
     Console.WriteLine();
 }
 
-void PrintArithmeticMeanOfColumns(int[,] matrix)
+double[] GetArithmeticMeanOfColumns(int[,] matrix)
 {
+    double[] result = new double[matrix.GetLength(1)];
     double sum;
 
     for (int j = 0; j < matrix.GetLength(1); j++)
@@ -72,17 +73,16 @@ void PrintArithmeticMeanOfColumns(int[,] matrix)
             sum += matrix[i, j];
         }
 
-        Console.Write(Math.Round(sum / matrix.GetLength(0), 1, MidpointRounding.ToZero));
-
-        if (j < matrix.GetLength(1) - 1)
-            Console.Write("; ");
-        else
-            Console.WriteLine(".");
+        result[j] = Math.Round(sum / matrix.GetLength(0), 1, MidpointRounding.ToZero);
     }
+
+    return result;
 }
 
 int rowsCount = GetNumber("Введите количество строк:");
 int columnsCount = GetNumber("Введите количество столбцов:");
+
 int[,] matrix = InitMatrix(rowsCount, columnsCount);
 PrintMatrix(matrix);
-PrintArithmeticMeanOfColumns(matrix);
+
+Console.WriteLine($"{string.Join("; ", GetArithmeticMeanOfColumns(matrix))}.");
