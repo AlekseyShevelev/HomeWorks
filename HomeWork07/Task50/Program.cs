@@ -15,7 +15,7 @@ int GetNumber(string message, bool zeroIsAllowed)
     {
         Console.WriteLine(message);
 
-        if (int.TryParse(Console.ReadLine(), out resultNumber) && (zeroIsAllowed || resultNumber > 0))
+        if (int.TryParse(Console.ReadLine(), out resultNumber) && resultNumber >= 0 && (zeroIsAllowed || resultNumber != 0))
         {
             break;
         }
