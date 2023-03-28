@@ -3,13 +3,13 @@
 # A = 3; B = 5 -> 243 (3⁵)
 # A = 2; B = 3 -> 8 
 
-a = int(input("Ведите число A: "))
-b = int(input("Ведите число B: "))
-
 def power(a, b):
     if b > 0:
         return power(a, b - 1) * a
     else:
         return 1
+    
+a = int(input("Ведите число A: "))
+b = int(input("Ведите число B: "))
 
 print(power(a, b))

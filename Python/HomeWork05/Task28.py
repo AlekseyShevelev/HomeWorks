@@ -5,13 +5,13 @@
 # 2 2
 # 4
 
-a = int(input("Ведите число A: "))
-b = int(input("Ведите число B: "))
-
 def sum(a, b):
     if b > 0:
         return sum(a + 1, b - 1)
     else:
         return a
+    
+a = int(input("Ведите число A: "))
+b = int(input("Ведите число B: "))
 
 print(sum(a, b))
