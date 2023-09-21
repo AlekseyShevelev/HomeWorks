@@ -13,26 +13,26 @@ public class Scene {
                   List<Flash> flashes,
                   List<Camera> cameras) throws Exception {
         this.id = id;
-        if(!models.isEmpty()) {
-            this.models = models;
-        }
-        else {
+        if(models.isEmpty()) {
             throw new Exception("Должна быть хотя бы одна модель");
         }
-        this.flashes = flashes;
-        if(!cameras.isEmpty()) {
-            this.cameras = cameras;
-        }
         else {
+            this.models = models;
+        }
+        this.flashes = flashes;
+        if(cameras.isEmpty()) {
             throw new Exception("Должна быть хотя бы одна камера");
         }
+        else {
+            this.cameras = cameras;
+        }
     }
 
-    public <T> T method1(T flash) {
-        return flash;
+    public Type method1(Type t) {
+        return t;
     }
 
-    public <T, E> T method2(T flash, E camera) {
-        return flash;
+    public Type1 method2(Type1 t1, Type2 t2) {
+        return t1;
     }
 }
