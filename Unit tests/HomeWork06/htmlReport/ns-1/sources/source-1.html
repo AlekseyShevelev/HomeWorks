@@ -1,0 +1,136 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1251"> 
+  <title>Coverage Report > ListTools</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">task1</a>
+</div>
+
+<h1>Coverage Summary for Class: ListTools (task1)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ListTools</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package task1;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="fc">&nbsp;public class ListTools {</b>
+&nbsp;    public String listCompare(List&lt;Integer&gt; list1, List&lt;Integer&gt; list2) {
+<b class="fc">&nbsp;        double avgList1 = getAverage(list1);</b>
+<b class="fc">&nbsp;        double avgList2 = getAverage(list2);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (avgList1 &gt; avgList2) {</b>
+<b class="fc">&nbsp;            return &quot;Первый список имеет большее среднее значение&quot;;</b>
+<b class="fc">&nbsp;        } else if (avgList1 &lt; avgList2) {</b>
+<b class="fc">&nbsp;            return &quot;Второй список имеет большее среднее значение&quot;;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;         return &quot;Средние значения равны&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private double getAverage(List&lt;Integer&gt; list) {
+<b class="fc">&nbsp;        if (list == null || list.isEmpty()) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Список чисел пуст или равен null.&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        int sumList = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;        for (int n: list) {</b>
+<b class="fc">&nbsp;            sumList += n;</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+<b class="fc">&nbsp;        return (double) sumList / list.size();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-17 17:46</div>
+</div>
+</body>
+</html>

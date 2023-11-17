@@ -3,7 +3,6 @@ package task1;
 import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,7 +50,7 @@ class ListToolsTest {
     @Test
     @DisplayName("Проверка функции listCompare (пустой список)")
     void listCompare_emptyList() {
-        List<Integer> list1 = new LinkedList<>();
+        List<Integer> list1 = List.of();
         List<Integer> list2 = Arrays.asList(5, 7, 9);
 
         assertThrows(IllegalArgumentException.class, () -> listTools.listCompare(list1, list2));
