@@ -34,6 +34,7 @@ public class Main {
             System.out.println(order);
 
             order = ShopService.makeOrder("Петрова А.В.", "Apple", -1);
+            System.out.println(order);
         }
         catch (WrongQuantity e) {
             System.out.println(e.getMessage());

@@ -3,8 +3,6 @@ package task2.exceptions;
 public class WrongQuantity extends Exception {
     private String customer;
     private String product;
-    public WrongQuantity() {
-    }
 
     public WrongQuantity(String message) {
         super(message);

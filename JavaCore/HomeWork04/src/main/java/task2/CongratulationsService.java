@@ -5,13 +5,13 @@ import java.time.Month;
 import java.util.List;
 
 public class CongratulationsService {
-    public static enum Holiday {
+    public enum Holiday {
         NEW_YEAR(Month.JANUARY, 1),
         MENS_DAY(Month.FEBRUARY, 23),
         WOMENS_DAY(Month.MARCH, 8);
 
-        private Month month;
-        private int day;
+        private final Month month;
+        private final int day;
 
         Holiday(Month month, int day) {
             this.month = month;
