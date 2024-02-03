@@ -13,7 +13,7 @@ public class ListTools {
             return "Второй список имеет большее среднее значение";
         }
 
-         return "Средние значения равны";
+        return "Средние значения равны";
     }
 
     private double getAverage(List<Integer> list) {
