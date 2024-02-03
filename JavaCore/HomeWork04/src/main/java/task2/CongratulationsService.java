@@ -25,19 +25,34 @@ public class CongratulationsService {
         public int getDay() {
             return day;
         }
+
+        public boolean isToday(LocalDate date) {
+            return date.getMonth() == month && date.getDay() == day;
+        }
     }
 
     public static void sendGreetings(List<Customer> customers, LocalDate date) {
+//        for (Customer customer: customers) {
+//            if (date.getMonth().equals(Holiday.NEW_YEAR.getMonth())
+//                    && date.getDayOfMonth() == Holiday.NEW_YEAR.getDay()) {
+//                System.out.printf("Дорогой(ая) %s! Поздравляю Вас с Новым Годом!\n", customer.getFio());
+//            } else if (date.getMonth().equals(Holiday.MENS_DAY.getMonth())
+//                    && date.getDayOfMonth() == Holiday.MENS_DAY.getDay()
+//                    && customer.getGender().equals(Customer.Gender.MALE)) {
+//                System.out.printf("Дорогой %s! Поздравляю Вас с Днем защитника Отечества!\n", customer.getFio());
+//            } else if (date.getMonth().equals(Holiday.WOMENS_DAY.getMonth())
+//                    && date.getDayOfMonth() == Holiday.WOMENS_DAY.getDay()
+//                    && customer.getGender().equals(Customer.Gender.FEMALE)) {
+//                System.out.printf("Дорогая %s! Поздравляю Вас с Международным женским днем!\n", customer.getFio());
+//            }
+//        }
         for (Customer customer: customers) {
-            if (date.getMonth().equals(Holiday.NEW_YEAR.getMonth())
-                    && date.getDayOfMonth() == Holiday.NEW_YEAR.getDay()) {
+            if (Holiday.NEW_YEAR.isToday(date)) {
                 System.out.printf("Дорогой(ая) %s! Поздравляю Вас с Новым Годом!\n", customer.getFio());
-            } else if (date.getMonth().equals(Holiday.MENS_DAY.getMonth())
-                    && date.getDayOfMonth() == Holiday.MENS_DAY.getDay()
+            } else if (Holiday.MENS_DAY.isToday(date)
                     && customer.getGender().equals(Customer.Gender.MALE)) {
                 System.out.printf("Дорогой %s! Поздравляю Вас с Днем защитника Отечества!\n", customer.getFio());
-            } else if (date.getMonth().equals(Holiday.WOMENS_DAY.getMonth())
-                    && date.getDayOfMonth() == Holiday.WOMENS_DAY.getDay()
+            } else if (Holiday.WOMENS_DAY.isToday(date)
                     && customer.getGender().equals(Customer.Gender.FEMALE)) {
                 System.out.printf("Дорогая %s! Поздравляю Вас с Международным женским днем!\n", customer.getFio());
             }
