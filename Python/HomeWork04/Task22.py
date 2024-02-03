@@ -17,7 +17,9 @@ for i in range(m):
 
 print(list1)
 print(list2)
-list = list(set(list1) & set(list2))
-list.sort()
-print(list)
+# list = list(set(list1) & set(list2))
+# list.sort()
+# print(list)
+
+print(sorted(set(list1) & set(list2)))
 

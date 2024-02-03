@@ -23,8 +23,8 @@ x = int(input("Введите число X: "))
 
 count = 0
 
-for i in range(len(lst)):
-    if lst[i] == x:
+for i in lst:
+    if i == x:
         count += 1
 
 print(f"-> {count}")

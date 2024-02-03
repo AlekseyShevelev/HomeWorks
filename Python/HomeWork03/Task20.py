@@ -48,5 +48,6 @@ for s in word:
     for key in dict:
         if s.upper() in key:
             cost += dict[key]
+            break
 
 print(cost)

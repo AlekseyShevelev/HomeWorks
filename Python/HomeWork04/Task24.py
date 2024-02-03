@@ -17,13 +17,25 @@ list = []
 for i in range(n):
     list.append(rnd(1, 20))
 
-list_cnt = []
+# list_cnt = []
+
+# for i in range(len(list)):
+#     if i == len(list) - 1:
+#         list_cnt.append(list[i - 1] + list[i] + list[0])
+#     else:
+#         list_cnt.append(list[i - 1] + list[i] + list[i + 1])
+
+# for i in range(len(list)):
+#     list_cnt.append(list[i - 2] + list[i - 1] + list[i])
+
+# print(list)
+# print(max(list_cnt))
+
+maximum = 0
 
 for i in range(len(list)):
-    if i == len(list) - 1:
-        list_cnt.append(list[i - 1] + list[i] + list[0])
-    else:
-        list_cnt.append(list[i - 1] + list[i] + list[i + 1])
+    maximum = max(maximum, list[i - 2] + list[i - 1] + list[i])
 
 print(list)
-print(max(list_cnt))
+print(maximum)
+
