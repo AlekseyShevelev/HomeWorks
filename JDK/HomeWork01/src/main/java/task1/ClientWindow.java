@@ -1,12 +1,14 @@
 package task1;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ClientWindow extends JFrame {
-    private static final int POS_X = 200;
+    private static final int POS_X = 100;
     private static final int POS_Y = 200;
     private static final int WIDTH = 400;
     private static final int HEIGHT = 500;
@@ -24,7 +26,6 @@ public class ClientWindow extends JFrame {
 
     private final ServerWindow server;
 
-
     public ClientWindow(ServerWindow server) {
         this.server = server;
 
@@ -32,6 +33,22 @@ public class ClientWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 connectToServer();
+            }
+        });
+        tfMessage.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                checkMessage();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                checkMessage();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                checkMessage();
             }
         });
         btnSend.addActionListener(new ActionListener() {
@@ -70,13 +87,16 @@ public class ClientWindow extends JFrame {
         setVisible(true);
     }
 
+    private void checkMessage() {
+        btnSend.setEnabled(!tfMessage.getText().isEmpty());
+    }
+
     private void connectToServer() {
-        if (server.isServerWorking()) {
-            log.append("Successfully connected to the server.\n\n");
+        if (server.connect(this)) {
+            log.setText("Successfully connected to the server.\n\n");
+            log.append(server.getHistory());
             pnlTop.setVisible(false);
             tfMessage.setEnabled(true);
-            btnSend.setEnabled(true);
-            log.append(server.getHistory() );
         }
         else {
             log.append("Server connection error.\n");
@@ -88,7 +108,6 @@ public class ClientWindow extends JFrame {
 
         if (!message.isBlank()) {
             if (server.sendMessage(tfUserName.getText(), message)) {
-                log.append(tfUserName.getText() + ": " + message + "\n");
                 tfMessage.setText("");
             }
             else {
@@ -98,5 +117,13 @@ public class ClientWindow extends JFrame {
                 btnSend.setEnabled(false);
             }
         }
+    }
+
+    public String getUserName() {
+        return tfUserName.getText();
+    }
+
+    public void receiveMessage(String message) {
+        log.append(message);
     }
 }

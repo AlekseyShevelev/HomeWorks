@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServerWindow extends JFrame {
-    private static final int POS_X = 600;
-    private static final int POS_Y = 200;
+    private static final int POS_X = 500;
+    private static final int POS_Y = 100;
     private static final int WIDTH = 400;
     private static final int HEIGHT = 600;
 
@@ -18,8 +20,12 @@ public class ServerWindow extends JFrame {
 
     private boolean isServerWorking;
 
+    private List<ClientWindow> clients;
+
     public ServerWindow() {
         isServerWorking = false;
+        clients = new ArrayList<>();
+
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,8 +68,13 @@ public class ServerWindow extends JFrame {
         setVisible(true);
     }
 
-    public boolean isServerWorking() {
-        return isServerWorking;
+    public boolean connect(ClientWindow client) {
+        if (!isServerWorking) {
+            return false;
+        }
+        clients.add(client);
+        log.append(client.getUserName() + " connected.\n");
+        return true;
     }
 
     public String getHistory() {
@@ -78,6 +89,11 @@ public class ServerWindow extends JFrame {
         }
 
         log.append(text);
+
+        for (ClientWindow client : clients) {
+            client.receiveMessage(text);
+        }
+
         return true;
     }
 }
