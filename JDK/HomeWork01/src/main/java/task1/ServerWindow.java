@@ -29,7 +29,7 @@ public class ServerWindow extends JFrame {
                     return;
                 }
                 isServerWorking = true;
-                log.append("Server started...\n");
+                log.setText("Server started...\n");
             }
         });
         btnStop.addActionListener(new ActionListener() {
@@ -70,12 +70,14 @@ public class ServerWindow extends JFrame {
         return LogFile.getLog();
     }
 
-    public boolean sendMessage(String message) {
-        if (!isServerWorking || !LogFile.addToLog(message)) {
+    public boolean sendMessage(String userName, String message) {
+        String text = userName + ": " + message + "\n";
+
+        if (!isServerWorking || !LogFile.addToLog(text)) {
             return false;
         }
 
-        log.append(message + "\n");
+        log.append(text);
         return true;
     }
 }

@@ -76,7 +76,7 @@ public class ClientWindow extends JFrame {
             pnlTop.setVisible(false);
             tfMessage.setEnabled(true);
             btnSend.setEnabled(true);
-            log.append(server.getHistory() + "\n");
+            log.append(server.getHistory() );
         }
         else {
             log.append("Server connection error.\n");
@@ -87,8 +87,8 @@ public class ClientWindow extends JFrame {
         String message = tfMessage.getText();
 
         if (!message.isBlank()) {
-            if (server.sendMessage(message)) {
-                log.append(message + "\n");
+            if (server.sendMessage(tfUserName.getText(), message)) {
+                log.append(tfUserName.getText() + ": " + message + "\n");
                 tfMessage.setText("");
             }
             else {
