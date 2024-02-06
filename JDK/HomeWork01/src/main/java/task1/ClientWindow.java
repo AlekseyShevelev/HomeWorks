@@ -97,6 +97,7 @@ public class ClientWindow extends JFrame {
             log.append(server.getHistory());
             pnlTop.setVisible(false);
             tfMessage.setEnabled(true);
+            checkMessage();
         }
         else {
             log.append("Server connection error.\n");
