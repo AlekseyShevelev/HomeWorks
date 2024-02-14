@@ -6,32 +6,22 @@ sum(), multiply(), divide(), subtract().
 Параметры этих методов – два числа разного типа, над которыми должна быть произведена операция.
  */
 public class Calculator {
-    public static <T1 extends Number, T2 extends Number> Number sum(T1 arg1, T2 arg2) {
-        //Byte, Double, Float, Integer, Long и Short
-        if (arg1 instanceof Double || arg2 instanceof Double) {
-            return arg1.doubleValue() + arg2.doubleValue();
-        }
-        return null;
+    public static <T extends Number> Number sum(T arg1, T arg2) {
+        return arg1.doubleValue() + arg2.doubleValue();
     }
 
-    public static <T1 extends Number, T2 extends Number> Number multiply(T1 arg1, T2 arg2) {
-        if (arg1 instanceof Double || arg2 instanceof Double) {
-            return arg1.doubleValue() * arg2.doubleValue();
-        }
-        return null;
+    public static <T extends Number> Number multiply(T arg1, T arg2) {
+        return arg1.doubleValue() * arg2.doubleValue();
     }
 
-    public static <T1 extends Number, T2 extends Number> Number divide(T1 arg1, T2 arg2) {
-        if (arg1 instanceof Double || arg2 instanceof Double) {
-            return arg1.doubleValue() / arg2.doubleValue();
+    public static <T extends Number> Number divide(T arg1, T arg2) {
+        if(arg2.doubleValue() == 0) {
+            throw new ArithmeticException("Деление на 0 запрещено.");
         }
-        return null;
+        return arg1.doubleValue() / arg2.doubleValue();
     }
 
-    public static <T1 extends Number, T2 extends Number> Number subtract(T1 arg1, T2 arg2) {
-        if (arg1 instanceof Double || arg2 instanceof Double) {
-            return arg1.doubleValue() - arg2.doubleValue();
-        }
-        return null;
+    public static <T extends Number> Number subtract(T arg1, T arg2) {
+        return arg1.doubleValue() - arg2.doubleValue();
     }
 }
