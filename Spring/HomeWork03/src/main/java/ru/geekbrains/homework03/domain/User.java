@@ -1,9 +1,24 @@
 package ru.geekbrains.homework03.domain;
 
+/**
+ * Объект пользователя
+ */
 public class User {
+    /**
+     * Идентификатор пользователя
+     */
     private int id;
+    /**
+     * Имя пользователя
+     */
     private String name;
+    /**
+     * Возраст пользователя
+     */
     private int age;
+    /**
+     * Email пользователя
+     */
     private String email;
 
     public int getId() {

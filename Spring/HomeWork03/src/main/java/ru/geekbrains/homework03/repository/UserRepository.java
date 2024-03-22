@@ -8,6 +8,9 @@ import ru.geekbrains.homework03.domain.User;
 //import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Репозиторий пользователя
+ */
 @Repository
 public class UserRepository {
     //    private final List<User> users = new ArrayList<>();
@@ -26,12 +29,20 @@ public class UserRepository {
         return user;
     };
 
+    /**
+     * Получение списка пользователей
+     * @return список пользователей
+     */
     public List<User> getUsers() {
 //        return users;
         String sql = "SELECT * FROM users";
         return jdbc.query(sql, userRowMapper);
     }
 
+    /**
+     * Добавление пользователя
+     * @param user объект пользователя
+     */
     public void addUser(User user) {
 //        users.add(user);
         String sql = "INSERT INTO users (name, age, email) VALUES (?, ?, ?)";

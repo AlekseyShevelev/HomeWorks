@@ -12,6 +12,9 @@ import ru.geekbrains.homework03.services.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер задач
+ */
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
@@ -30,16 +33,29 @@ public class TaskController {
         return tasks;
     }
 
+    /**
+     * Сортировка пользователей по возрасту
+     * @return отсортированный список пользователей
+     */
     @GetMapping("/sort")
     public List<User> sortUsersByAge() {
         return dataProcessingService.sortUsersByAge(userService.getUsers());
     }
 
+    /**
+     * Фильтрация пользователей по возрасту
+     * @param age возраст
+     * @return отфильтрованный список пользователей
+     */
     @GetMapping("/filter/{age}")
     public List<User> filterUsersByAge(@PathVariable int age) {
         return dataProcessingService.filterUsersByAge(userService.getUsers(), age);
     }
 
+    /**
+     * Расчет среднего возраста пользователей
+     * @return средний возраст пользователей
+     */
     @GetMapping("/calc")
     public double calculateAverageAge() {
         return dataProcessingService.calculateAverageAge(userService.getUsers());
