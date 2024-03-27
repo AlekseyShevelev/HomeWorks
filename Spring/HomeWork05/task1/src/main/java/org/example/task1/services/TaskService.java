@@ -1,6 +1,7 @@
 package org.example.task1.services;
 
 import lombok.AllArgsConstructor;
+import org.example.task1.exceptions.TaskNotFoundException;
 import org.example.task1.model.Task;
 import org.example.task1.model.TaskStatus;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,15 @@ public class TaskService {
         return taskRepository.findTasksByStatus(status);
     }
 
+//    public void updateTaskStatus(Long id, TaskStatus status) {
+//        taskRepository.updateTaskStatus(id, status);
+//    }
+
     public Task updateTaskStatus(Long id, TaskStatus status) {
-        return taskRepository.updateTaskStatus(id, status);
+        Task task = taskRepository.findById(id)
+                .orElseThrow(TaskNotFoundException::new);
+        task.setStatus(status);
+        return taskRepository.save(task);
     }
 
     public void deleteTask(Long id) {
