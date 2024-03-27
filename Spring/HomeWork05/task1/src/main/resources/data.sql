@@ -1,0 +1,2 @@
+INSERT INTO tasks (description, status, create_date) VALUES ('Сходить в магазин', 'COMPLETED', '2024-01-25 13:00:00');
+INSERT INTO tasks (description, status, create_date) VALUES ('Записаться к врачу', 'NOT_STARTED', '2024-03-25 18:30:00');
