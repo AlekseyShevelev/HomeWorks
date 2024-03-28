@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.example.task2.exceptions.ResourceNotFoundException;
 import org.example.task2.model.Project;
 import org.example.task2.model.User;
+import org.example.task2.model.UsersProject;
 import org.example.task2.repository.ProjectRepository;
 import org.example.task2.repository.UserRepository;
 import org.example.task2.repository.UsersProjectRepository;
@@ -14,9 +15,9 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class UsersProjectService {
-    UsersProjectRepository usersProjectRepository;
-    ProjectRepository projectRepository;
-    UserRepository userRepository;
+    private final UsersProjectRepository usersProjectRepository;
+    private final ProjectRepository projectRepository;
+    private final UserRepository userRepository;
 
     /**
      * Получение списка пользователей, связанных с определенным проектом
@@ -72,5 +73,9 @@ public class UsersProjectService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
         project.getUsers().remove(user);
         return projectRepository.save(project);
+    }
+
+    public List<UsersProject> getAllUsersProject() {
+        return usersProjectRepository.findAll();
     }
 }

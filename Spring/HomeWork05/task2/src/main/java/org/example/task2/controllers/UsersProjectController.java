@@ -3,19 +3,16 @@ package org.example.task2.controllers;
 import lombok.AllArgsConstructor;
 import org.example.task2.model.Project;
 import org.example.task2.model.User;
+import org.example.task2.model.UsersProject;
 import org.example.task2.services.UsersProjectService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @AllArgsConstructor
 public class UsersProjectController {
-    private UsersProjectService usersProjectService;
+    private final UsersProjectService usersProjectService;
 
     /**
      * Получение списка пользователей, связанных с определенным проектом
@@ -59,5 +56,10 @@ public class UsersProjectController {
     @DeleteMapping("/projects/{projectId}/users/{userId}")
     public Project removeUserFromProject(@PathVariable Long projectId, @PathVariable Long userId) {
         return usersProjectService.removeUserFromProject(projectId, userId);
+    }
+
+    @GetMapping("/test")
+    public List<UsersProject> getAllUsersProject() {
+        return usersProjectService.getAllUsersProject();
     }
 }

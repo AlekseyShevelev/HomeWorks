@@ -21,13 +21,18 @@ public class Project {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "created_date", nullable = false)
     private LocalDate createdDate;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_project",
-            joinColumns = @JoinColumn(name = "projectId"),
-            inverseJoinColumns = @JoinColumn(name = "userId"))
+    @ManyToMany(
+            targetEntity = User.class,
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "users_project",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private Set<User> users = new HashSet<>();
 
     public Project() {
