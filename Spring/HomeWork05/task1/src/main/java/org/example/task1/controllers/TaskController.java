@@ -29,11 +29,6 @@ public class TaskController {
         return taskService.getTasksByStatus(status);
     }
 
-//    @PutMapping("/{id}")
-//    public void updateTaskStatus(@PathVariable Long id, @RequestBody TaskStatus status) {
-//        taskService.updateTaskStatus(id, status);
-//    }
-
     @PutMapping("/{id}")
     public Task updateTaskStatus(@PathVariable Long id, @RequestBody TaskStatus status) {
         return taskService.updateTaskStatus(id, status);

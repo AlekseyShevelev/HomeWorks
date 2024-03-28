@@ -26,10 +26,6 @@ public class TaskService {
         return taskRepository.findTasksByStatus(status);
     }
 
-//    public void updateTaskStatus(Long id, TaskStatus status) {
-//        taskRepository.updateTaskStatus(id, status);
-//    }
-
     public Task updateTaskStatus(Long id, TaskStatus status) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(TaskNotFoundException::new);
