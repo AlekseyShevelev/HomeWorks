@@ -25,8 +25,8 @@ public class Project {
     private LocalDate createdDate;
 
     @ManyToMany(
-            targetEntity = User.class,
-            fetch = FetchType.LAZY, cascade = CascadeType.ALL
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
     )
     @JoinTable(
             name = "users_project",

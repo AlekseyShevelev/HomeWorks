@@ -24,9 +24,6 @@ public class User {
 
     private String role;
 
-    @ManyToMany(
-            mappedBy = "users",
-            targetEntity = Project.class
-    )
+    @ManyToMany(mappedBy = "users")
     private Set<Project> projects = new HashSet<>();
 }
