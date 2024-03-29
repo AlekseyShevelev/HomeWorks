@@ -78,4 +78,12 @@ public class UsersProjectService {
     public List<UsersProject> getAllUsersProject() {
         return usersProjectRepository.findAll();
     }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
+    }
 }

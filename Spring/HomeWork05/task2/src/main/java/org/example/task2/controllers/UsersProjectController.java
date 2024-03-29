@@ -62,4 +62,14 @@ public class UsersProjectController {
     public List<UsersProject> getAllUsersProject() {
         return usersProjectService.getAllUsersProject();
     }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return usersProjectService.getAllUsers();
+    }
+
+    @GetMapping("/projects")
+    public List<Project> getAllProjects() {
+        return usersProjectService.getAllProjects();
+    }
 }
