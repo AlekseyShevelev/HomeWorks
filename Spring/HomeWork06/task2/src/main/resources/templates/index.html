@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div th:switch="${characters.results}">
+    <h2 th:case="null">No characters found!</h2>
+    <div th:case="*">
+        <h2>Characters</h2>
+        <table>
+            <tbody>
+            <tr th:each="result : ${characters.results}">
+                <td th:text="${result.id}"></td>
+                <td>
+                    <a th:href="@{/characters/{id}(id=${result.id})}">
+                        <p th:text="${result.name}"></p>
+                    </a>
+                </td>
+                <td>
+                    <img th:src="${result.image}" alt="${result.name}" width="20%">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

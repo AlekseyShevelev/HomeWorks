@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Character Info</title>
+</head>
+<body>
+<h1 th:text="${result.name}"></h1>
+<img th:src="${result.image}" alt="${result.name}">
+<div>
+    <p>Status: <span th:text="${result.status}"></span></p>
+    <p>Species: <span th:text="${result.species}"></span></p>
+    <p>Type: <span th:text="${result.type}"></span></p>
+    <p>Gender: <span th:text="${result.gender}"></span></p>
+    <p>Created: <span th:text="${result.created}"></span></p>
+</div>
+<a href="/">Show all</a>
+</body>
+</html>
