@@ -25,9 +25,4 @@ public class SecurityConfig {
                         .jwt(Customizer.withDefaults()));
         return http.build();
     }
-
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
 }
