@@ -23,7 +23,7 @@ public class ClientController {
     }
 
     @GetMapping
-    public String getCat(Model model, Principal principal) {
+    public String getSmile(Model model, Principal principal) {
         RestTemplate template = new RestTemplate();
         String accessToken = authorizedClientService
                 .loadAuthorizedClient("reg-client", principal.getName())
