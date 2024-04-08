@@ -10,7 +10,9 @@ import org.example.task2.repository.UserRepository;
 import org.example.task2.repository.UsersProjectRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -37,10 +39,21 @@ public class UsersProjectService {
      * @param userId идентификатор пользователя
      * @return список проектов
      */
+//    public List<Project> getProjectsByUserId(Long userId) {
+//        return userRepository.findById(userId)
+//                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId))
+//                .getProjects().stream().toList();
+//    }
+
     public List<Project> getProjectsByUserId(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId))
-                .getProjects().stream().toList();
+        List<Project> projects = new ArrayList<>();
+
+        for (UsersProject usersProject : usersProjectRepository.findUsersProjectByUserId(userId)) {
+            Optional<Project> project = projectRepository.findById(usersProject.getProjectId());
+            project.ifPresent(projects::add);
+        }
+
+        return projects;
     }
 
     /**
