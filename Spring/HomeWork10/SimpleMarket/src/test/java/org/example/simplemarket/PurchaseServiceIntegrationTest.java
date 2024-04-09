@@ -10,22 +10,20 @@ import org.example.simplemarket.services.PurchaseService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.math.BigDecimal;
 
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class PurchaseServiceIntegrationTest {
-    @MockBean
+    @Autowired
     private MarketAccountRepository marketAccountRepository;
 
-    @MockBean
+    @Autowired
     private UserAccountRepository userAccountRepository;
 
-    @MockBean
+    @Autowired
     private ProductRepository productRepository;
 
     @Autowired
@@ -35,34 +33,57 @@ public class PurchaseServiceIntegrationTest {
     public void testPurchaseSuccess() {
         // Pre
         Product product = new Product();
-        product.setId(1);
-        product.setName("Product 1");
+        product.setName("Test Product");
         product.setPrice(BigDecimal.valueOf(100));
         product.setQuantity(50);
+        productRepository.save(product);
+        product = productRepository
+                .getAllProducts().stream()
+                .filter(p -> p.getName().equals("Test Product"))
+                .findFirst().orElse(null);
 
         UserAccount userAccount = new UserAccount();
-        userAccount.setId(1);
         userAccount.setName("User account 1");
         userAccount.setAmount(BigDecimal.valueOf(2000));
+        userAccountRepository.save(userAccount);
+        userAccount = userAccountRepository
+                .getAllUserAccounts().stream()
+                .filter(p -> p.getName().equals("User account 1"))
+                .findFirst().orElse(null);
 
         MarketAccount marketAccount = new MarketAccount();
-        marketAccount.setId(1);
         marketAccount.setName("Market account 2");
         marketAccount.setAmount(BigDecimal.valueOf(10000));
-
-        given(productRepository.getProductById(product.getId()))
-                .willReturn(product);
-        given(userAccountRepository.getUserAccountById(userAccount.getId()))
-                .willReturn(userAccount);
-        given(marketAccountRepository.getMarketAccountById(marketAccount.getId()))
-                .willReturn(marketAccount);
+        marketAccountRepository.save(marketAccount);
+        marketAccount = marketAccountRepository
+                .getAllMarketAccounts().stream()
+                .filter(p -> p.getName().equals("Market account 2"))
+                .findFirst().orElse(null);
 
         // Action
-        purchaseService.buyProduct(1, 5, 1, 1);
+        assert product != null;
+        assert marketAccount != null;
+        assert userAccount != null;
+        purchaseService.buyProduct(
+                product.getId(),
+                5,
+                marketAccount.getId(),
+                userAccount.getId());
 
         // Checks
-        verify(productRepository).changeQuantity(1, 45);
-        verify(userAccountRepository).changeAmount(1, BigDecimal.valueOf(1500));
-        verify(marketAccountRepository).changeAmount(1, BigDecimal.valueOf(10500));
+        Product newProduct = productRepository.getProductById(product.getId());
+        assertEquals(
+                product.getQuantity() - 5,
+                newProduct.getQuantity());
+
+        MarketAccount newMarketAccount = marketAccountRepository.getMarketAccountById(marketAccount.getId());
+        assertEquals(
+                marketAccount.getAmount().add(BigDecimal.valueOf(500)),
+                newMarketAccount.getAmount());
+
+        UserAccount newUserAccount = userAccountRepository.getUserAccountById(userAccount.getId());
+        assertEquals(
+                userAccount.getAmount().subtract(BigDecimal.valueOf(500)),
+                newUserAccount.getAmount());
     }
 }

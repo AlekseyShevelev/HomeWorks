@@ -28,4 +28,9 @@ public class MarketAccountRepository {
         String sql = "UPDATE market_accounts SET amount = ? WHERE id = ?;";
         jdbc.update(sql, amount, id);
     }
+
+    public void save(MarketAccount marketAccount) {
+        String sql = "INSERT INTO market_accounts (name, amount) VALUES(?, ?)";
+        jdbc.update(sql, marketAccount.getName(), marketAccount.getAmount());
+    }
 }

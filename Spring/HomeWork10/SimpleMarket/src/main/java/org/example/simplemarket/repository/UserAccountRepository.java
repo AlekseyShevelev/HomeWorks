@@ -28,4 +28,9 @@ public class UserAccountRepository {
         String sql = "UPDATE user_accounts SET amount = ? WHERE id = ?;";
         jdbc.update(sql, amount, id);
     }
+
+    public void save(UserAccount userAccount) {
+        String sql = "INSERT INTO user_accounts (name, amount) VALUES(?, ?)";
+        jdbc.update(sql, userAccount.getName(), userAccount.getAmount());
+    }
 }

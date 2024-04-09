@@ -27,4 +27,9 @@ public class ProductRepository {
         String sql = "UPDATE products SET quantity = ? WHERE id = ?;";
         jdbc.update(sql, quantity, id);
     }
+
+    public void save(Product product) {
+        String sql = "INSERT INTO products (name, price, quantity) VALUES(?, ?, ?)";
+        jdbc.update(sql, product.getName(), product.getPrice(), product.getQuantity());
+    }
 }
