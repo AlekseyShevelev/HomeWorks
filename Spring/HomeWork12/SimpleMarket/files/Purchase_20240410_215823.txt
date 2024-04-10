@@ -1,0 +1,1 @@
+PurchaseRequest(productId=1, quantity=1, marketAccountId=1, userAccountId=1)
