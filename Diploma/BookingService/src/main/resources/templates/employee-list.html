@@ -1,0 +1,30 @@
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Наши сотрудники</title>
+</head>
+<body>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <div th:replace="~{page-templates :: main-text}"></div>
+    <div th:switch="${employees}">
+        <h2 th:case="null">No employees found!</h2>
+        <div th:case="*">
+            <h2>Наши мастера:</h2>
+            <div th:each="employee : ${employees}">
+                <div style="border:1px solid black;padding: 10px; margin: 10px">
+                    <img th:src="'/images/' + ${employee.image}" alt="Photo">
+                    <h3 th:text="${employee.name}"></h3>
+                    <p th:text="'Салон: ' + ${employee.branch.name}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{page-templates :: footer}"></div>
+</div>
+</body>
+</html>
+
+

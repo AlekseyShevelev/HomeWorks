@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: BookingService
+  main:
+    banner-mode: off
+  jpa:
+    generate-ddl: false
+    hibernate.ddl-auto: none
+

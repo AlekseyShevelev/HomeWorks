@@ -1,0 +1,42 @@
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><Бронирование></title>
+</head>
+<body>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <h2>Онлайн-запись</h2>
+    <h3>Для бронирования выберите мастера, услугу и время:</h3>
+    <div th:replace="~{page-templates :: main-text}"></div>
+
+    <form action="#" th:action="@{/reservations/add}" th:object="${reservation}" method="post">
+        <div>
+            <label for="employee">Мастер: </label>
+            <select id="employee">
+                <option value="0">-- Выберите мастера</option>
+                <option th:each="employee : ${employees}" th:value="${employee}" th:text="${employee.name}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="operation">Услуга: </label>
+            <select id="operation">
+                <option value="0">-- Выберите услугу</option>
+                <option th:each="operation : ${operations}" th:value="${operation}" th:text="${operation.name}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="serviceDate">Дата: </label>
+            <input type="datetime-local" th:field="*{serviceDate}" id="serviceDate" placeholder="Дата" required>
+        </div>
+        <input type="submit" value="Забронировать">
+    </form>
+
+    <div th:replace="~{page-templates :: footer}"></div>
+</div>
+</body>
+</html>
+
+

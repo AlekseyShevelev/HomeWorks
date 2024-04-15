@@ -1,0 +1,41 @@
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Наши услуги</title>
+</head>
+<body>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <div th:replace="~{page-templates :: main-text}"></div>
+    <div th:switch="${operations}">
+        <h2 th:case="null">No operations found!</h2>
+        <div th:case="*">
+            <h2>Наши услуги:</h2>
+            <table style="border:1px solid black; padding: 5px; margin: 5px">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Наименование</th>
+                    <th>Стоимость (руб.)</th>
+                    <th>Длительность (мин.)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="operation : ${operations}">
+                    <td th:text="${operation.id}"></td>
+                    <td th:text="${operation.name}"></td>
+                    <td th:text="${operation.price}" style="text-align:right;"></td>
+                    <td th:text="${operation.duration}" style="text-align:right;"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div th:replace="~{page-templates :: footer}"></div>
+</div>
+</body>
+</html>
+
+

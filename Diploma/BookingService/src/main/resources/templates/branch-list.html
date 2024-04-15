@@ -1,0 +1,29 @@
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Наши салоны</title>
+</head>
+<body>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <div th:replace="~{page-templates :: main-text}"></div>
+    <div th:switch="${branches}">
+        <h2 th:case="null">No branches found!</h2>
+        <div th:case="*">
+            <h2>Наши салоны:</h2>
+            <div th:each="branch : ${branches}">
+                <div style="border:1px solid black; padding: 10px; margin: 10px">
+                    <h3 th:text="${branch.name}"></h3>
+                    <p th:text="'Адрес: ' + ${branch.address}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{page-templates :: footer}"></div>
+</div>
+</body>
+</html>
+
+

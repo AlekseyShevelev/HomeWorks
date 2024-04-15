@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>c3ad0e6c-6031-4cf1-93e2-201772407229</OriginalElement>
+  <nodes>
+    <node x="-920.1798561151073" y="-169.33812949640284">c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:roles</node>
+    <node x="-1475.9748201438847" y="310.66187050359713">c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:services</node>
+    <node x="-1215.827338129496" y="310.66187050359713">c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:reservations</node>
+    <node x="-910.1798561151073" y="58.66187050359716">c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:user_roles</node>
+    <node x="-1213.827338129496" y="-169.33812949640284">c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:branches</node>
+    <node x="-1204.827338129496" y="58.66187050359716">c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:employees</node>
+    <node x="-933.6798561151073" y="310.66187050359713">c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:users</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:reservations" target="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:services" relationship="REFERENCES">
+      <point x="-56.666666666666686" y="-92.0" />
+      <point x="-1187.4940047961627" y="402.66187050359713" />
+      <point x="-1401.9748201438847" y="402.66187050359713" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:employees" target="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:branches" relationship="REFERENCES">
+      <point x="0.0" y="-80.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:user_roles" target="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:users" relationship="REFERENCES">
+      <point x="-30.5" y="-56.0" />
+      <point x="-879.6798561151073" y="169.1366906474819" />
+      <point x="-849.1798561151073" y="169.1366906474819" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:user_roles" target="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:roles" relationship="REFERENCES">
+      <point x="30.5" y="-56.0" />
+      <point x="-849.1798561151073" y="58.66187050359716" />
+      <point x="0.0" y="44.0" />
+    </edge>
+    <edge source="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:reservations" target="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:employees" relationship="REFERENCES">
+      <point x="0.0" y="-92.0" />
+      <point x="-1130.827338129496" y="422.66187050359713" />
+      <point x="-1130.827338129496" y="422.66187050359713" />
+      <point x="0.0" y="80.0" />
+    </edge>
+    <edge source="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:reservations" target="c3ad0e6c-6031-4cf1-93e2-201772407229.TABLE:users" relationship="REFERENCES">
+      <point x="56.66666666666667" y="-92.0" />
+      <point x="-1074.1606714628292" y="355.0647482014389" />
+      <point x="-849.1798561151073" y="355.0647482014389" />
+      <point x="0.0" y="68.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.5560000000000003" showDependencies="false" x="-467.9352517985617" y="283.9999999999998" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

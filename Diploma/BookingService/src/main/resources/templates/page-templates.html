@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Салон красоты</title>
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav>
+        <h1>Салон красоты</h1>
+        <h2 sec:authorize="!isAuthenticated()">Онлайн-запись доступна только для зарегистрированных пользователей.</h2>
+        <ul>
+            <li><a href="/">Домашняя страница</a></li>
+            <li><a href="/branches">Наши салоны</a></li>
+            <li><a href="/employees">Наши мастера</a></li>
+            <li><a href="/operations">Наши услуги</a></li>
+            <li sec:authorize="hasAuthority('CLIENT')"><a href="/client">Личный кабинет</a></li>
+            <li sec:authorize="hasAuthority('CLIENT')"><a href="/reservations/add">Онлайн-запись</a></li>
+            <li sec:authorize="hasAuthority('MANAGER')"><a href="/manager">Настройки менеджера</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')"><a href="/admin">Настройки администратора</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/login">Войти</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <input class="link" type="submit" value="Выйти"/>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div th:fragment="main-text"></div>
+<div th:fragment="footer">
+    <p>&#169; Alexey Shevelev</p>
+</div>
+</body>
+</html>
