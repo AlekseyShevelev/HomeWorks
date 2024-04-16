@@ -2,6 +2,7 @@ package ru.geekbrains.bookingservice.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.geekbrains.bookingservice.exceptions.ResourceNotFoundException;
 import ru.geekbrains.bookingservice.model.Operation;
 import ru.geekbrains.bookingservice.repository.OperationRepository;
 
@@ -14,5 +15,10 @@ public class OperationService {
 
     public List<Operation> getAllOperations() {
         return operationRepository.findAll();
+    }
+
+    public Operation getOperationById(Long operationId) {
+        return operationRepository.findById(operationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Operation not found with id: " + operationId));
     }
 }

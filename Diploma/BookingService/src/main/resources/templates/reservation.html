@@ -12,24 +12,39 @@
     <h3>Для бронирования выберите мастера, услугу и время:</h3>
     <div th:replace="~{page-templates :: main-text}"></div>
 
-    <form action="#" th:action="@{/reservations/add}" th:object="${reservation}" method="post">
+    <form action="#" th:action="@{/reservations/add}" th:object="${reservationRequest}" method="post">
         <div>
             <label for="employee">Мастер: </label>
-            <select id="employee">
+            <select id="employee"
+                    required
+                    th:field="*{employeeId}">
                 <option value="0">-- Выберите мастера</option>
-                <option th:each="employee : ${employees}" th:value="${employee}" th:text="${employee.name}"></option>
+                <option th:each="employee : ${employees}"
+                        th:value="${employee.id}"
+                        th:text="${employee.name}">
+                </option>
             </select>
         </div>
         <div>
             <label for="operation">Услуга: </label>
-            <select id="operation">
+            <select id="operation"
+                    required
+                    th:field="*{operationId}">
                 <option value="0">-- Выберите услугу</option>
-                <option th:each="operation : ${operations}" th:value="${operation}" th:text="${operation.name}"></option>
+                <option th:each="operation : ${operations}"
+                        th:value="${operation.id}"
+                        th:text="${operation.name}"
+                ></option>
             </select>
         </div>
         <div>
             <label for="serviceDate">Дата: </label>
-            <input type="datetime-local" th:field="*{serviceDate}" id="serviceDate" placeholder="Дата" required>
+            <input
+                    type="datetime-local"
+                    id="serviceDate"
+                    placeholder="Дата"
+                    required
+                    th:field="*{serviceDate}" >
         </div>
         <input type="submit" value="Забронировать">
     </form>

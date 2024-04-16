@@ -1,0 +1,44 @@
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Бронирования</title>
+</head>
+<body>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <div th:replace="~{page-templates :: main-text}"></div>
+    <div th:switch="${reservations}">
+        <h2 th:case="null">No reservations found!</h2>
+        <div th:case="*">
+            <h2 th:text="${title} + ':'"></h2>
+            <table style="border:1px solid black; padding: 5px; margin: 5px">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th sec:authorize="!hasAuthority('CLIENT')">Клиент</th>
+                    <th>Мастер</th>
+                    <th>Услуга</th>
+                    <th>Дата</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="reservation : ${reservations}">
+                    <td th:text="${reservation.id}"></td>
+                    <td th:text="${reservation.user.name}" sec:authorize="!hasAuthority('CLIENT')"></td>
+                    <td th:text="${reservation.employee.name}"></td>
+                    <td th:text="${reservation.operation.name}"></td>
+                    <td th:text="${{reservation.serviceDate}}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div th:replace="~{page-templates :: footer}"></div>
+</div>
+</body>
+</html>
+
+

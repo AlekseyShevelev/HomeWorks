@@ -36,10 +36,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/index", "/images/**").permitAll()
                         .requestMatchers("/employees", "/branches", "/operations").permitAll()
-                        .requestMatchers("/reservations/**").hasAuthority(CLIENT.toString())
                         .requestMatchers("/client/**").hasAuthority(CLIENT.toString())
                         .requestMatchers("/manager/**").hasAuthority(MANAGER.toString())
                         .requestMatchers("/admin/**").hasAuthority(ADMIN.toString())
+                        .requestMatchers("/reservations/**").hasAnyAuthority(CLIENT.toString(), MANAGER.toString())
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

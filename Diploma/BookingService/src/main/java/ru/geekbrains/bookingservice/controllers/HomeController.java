@@ -30,20 +30,18 @@ public class HomeController {
 	}
 	
 	@GetMapping("/client")
-	public String client(Model model) {
-		model.addAttribute("text", "Client Page");
+	public String client() {
 		return "client";
 	}
 
 	@GetMapping("/manager")
-	public String manager(Model model) {
-		model.addAttribute("text", "Manager Page");
+	public String manager() {
 		return "manager";
 	}
 	
 	@GetMapping("/admin")
 	public String admin(Model model) {
-		model.addAttribute("text", "Admin Page");
+		model.addAttribute("text", "Настройки администратора");
 		return "admin";
 	}
 }

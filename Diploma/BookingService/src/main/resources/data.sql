@@ -19,10 +19,10 @@ INSERT INTO operations (name, price, duration) VALUES ('Стрижка женс�
 INSERT INTO branches (name, address, phone) VALUES ('Северная роза', 'Северный проспект, д.5, к.2', '8121234567');
 INSERT INTO branches (name, address, phone) VALUES ('Южный берег', 'Южный бульвар, д.7, к.1', '8129876543');
 
-INSERT INTO employees (name, rating, image, branch_id) VALUES ('Елена', 5, 'image1.png', 1);
-INSERT INTO employees (name, rating, image, branch_id) VALUES ('Оксана', 3, 'image2.png', 1);
+INSERT INTO employees (name, rating, image, branch_id) VALUES ('Елена', 3, 'image1.png', 1);
+INSERT INTO employees (name, rating, image, branch_id) VALUES ('Оксана', 5, 'image2.png', 1);
 INSERT INTO employees (name, rating, image, branch_id) VALUES ('Сергей', 4, 'image3.png', 1);
-INSERT INTO employees (name, rating, image, branch_id) VALUES ('Виктория', 5, 'image4.png', 2);
+INSERT INTO employees (name, rating, image, branch_id) VALUES ('Виктория', 4, 'image4.png', 2);
 INSERT INTO employees (name, rating, image, branch_id) VALUES ('Олег', 5, 'image5.png', 2);
 
 INSERT INTO reservations (user_id, employee_id, operation_id, service_date, notice_date)

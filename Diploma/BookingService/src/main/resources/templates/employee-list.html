@@ -17,6 +17,7 @@
                 <div style="border:1px solid black;padding: 10px; margin: 10px">
                     <img th:src="'/images/' + ${employee.image}" alt="Photo">
                     <h3 th:text="${employee.name}"></h3>
+                    <h4 th:text="'Рейтинг: ' + ${employee.rating}"></h4>
                     <p th:text="'Салон: ' + ${employee.branch.name}"></p>
                 </div>
             </div>

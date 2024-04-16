@@ -1,5 +1,6 @@
 package ru.geekbrains.bookingservice.configurations;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import ru.geekbrains.bookingservice.model.User;
 import java.util.Collection;
 
 @RequiredArgsConstructor
+@Getter
 public class MyUserDetails implements UserDetails {
     private final User user;
 
