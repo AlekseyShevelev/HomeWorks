@@ -38,7 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/employees", "/branches", "/operations").permitAll()
                         .requestMatchers("/client/**").hasAuthority(CLIENT.toString())
                         .requestMatchers("/manager/**").hasAuthority(MANAGER.toString())
-                        .requestMatchers("/admin/**").hasAuthority(ADMIN.toString())
+                        .requestMatchers("/admin/**", "/users/**").hasAuthority(ADMIN.toString())
                         .requestMatchers("/reservations/**").hasAnyAuthority(CLIENT.toString(), MANAGER.toString())
                         .anyRequest().authenticated()
                 )

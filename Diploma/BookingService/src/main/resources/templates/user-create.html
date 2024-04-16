@@ -3,14 +3,25 @@
       xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Create user</title>
 </head>
 <body>
-<form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="Name">
-    <input type="submit" value="Create User">
-</form>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <div th:replace="~{page-templates :: main-text}"></div>
+    <div>
+        <form action="#" th:action="@{/users/add}" th:object="${user}" method="post">
+            <label for="name">Имя пользователя: </label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Имя пользователя">
+            <br/>
+            <label for="email">Email: </label>
+            <input type="text" th:field="*{email}" id="email" placeholder="Email">
+            <br/>
+            <input type="submit" value="Создать">
+        </form>
+    </div>
+    <div th:replace="~{page-templates :: footer}"></div>
+</div>
 </body>
 </html>

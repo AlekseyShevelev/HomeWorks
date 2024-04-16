@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
     List<Reservation> findByUserId(Long user_id);
+    void deleteByUserId(Long user_id);
 }

@@ -40,8 +40,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/admin")
-	public String admin(Model model) {
-		model.addAttribute("text", "Настройки администратора");
+	public String admin() {
 		return "admin";
 	}
 }

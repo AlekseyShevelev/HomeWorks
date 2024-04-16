@@ -3,32 +3,41 @@
       xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Users</title>
 </head>
 <body>
-<div th:switch="${users}">
-    <h2 th:case="null">No users found!</h2>
-    <div th:case="*">
-        <h2>Users</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <div th:replace="~{page-templates :: main-text}"></div>
+    <div th:switch="${users}">
+        <h2 th:case="null">No users found!</h2>
+        <div th:case="*">
+            <h2>Пользователи системы:</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Имя пользователя</th>
+                    <th>Email</th>
+                    <th>Роли</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.roles[0].name}"></td>
+                    <td><a th:href="@{users/update/{id}(id=${user.id})}">Изменить</a></td>
+                    <td><a th:href="@{users/delete/{id}(id=${user.id})}">Удалить</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/user-create">Новый пользователь</a></p>
     </div>
-    <p><a href="/user-create">Add new user</a></p>
+    <div th:replace="~{page-templates :: footer}"></div>
 </div>
 </body>
 </html>

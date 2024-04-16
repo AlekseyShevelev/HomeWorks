@@ -3,18 +3,28 @@
       xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Update user</title>
 </head>
 <body>
-<form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="Name">
-    <br/>
-    <input type="submit" value="Update User">
-</form>
+<div th:replace="~{page-templates :: navbar}"></div>
+<div>
+    <div th:replace="~{page-templates :: main-text}"></div>
+    <div>
+        <form action="#" th:action="@{/users/update}" th:object="${user}" method="post">
+            <label for="id">Идентификатор</label>
+            <input readonly type="number" th:field="*{id}" id="id" placeholder="Идентификатор">
+            <br/>
+            <label for="name">Имя пользователя</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Имя пользователя">
+            <br/>
+            <label for="email">Email</label>
+            <input type="text" th:field="*{email}" id="email" placeholder="Email">
+            <br/>
+            <input type="submit" value="Сохранить">
+        </form>
+    </div>
+    <div th:replace="~{page-templates :: footer}"></div>
+</div>
 </body>
 </html>
