@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.geekbrains.bookingservice.model.Role;
 import ru.geekbrains.bookingservice.model.User;
 import ru.geekbrains.bookingservice.services.UserService;
 
@@ -28,6 +29,8 @@ public class UserController {
     @GetMapping("/add")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());
+        List<Role> roles = userService.getAllRoles();
+        model.addAttribute("roles", roles);
         return "user-create";
     }
 
@@ -47,6 +50,8 @@ public class UserController {
     public String updateUserForm(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
+        List<Role> roles = userService.getAllRoles();
+        model.addAttribute("roles", roles);
         return "user-update";
     }
 

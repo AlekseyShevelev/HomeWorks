@@ -35,7 +35,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/", "/index", "/images/**").permitAll()
-                        .requestMatchers("/employees", "/branches", "/operations").permitAll()
+                        .requestMatchers("/employees", "/branches", "/operations", "/registration").permitAll()
                         .requestMatchers("/client/**").hasAuthority(CLIENT.toString())
                         .requestMatchers("/manager/**").hasAuthority(MANAGER.toString())
                         .requestMatchers("/admin/**", "/users/**").hasAuthority(ADMIN.toString())

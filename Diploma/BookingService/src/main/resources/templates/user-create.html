@@ -11,13 +11,32 @@
 <div>
     <div th:replace="~{page-templates :: main-text}"></div>
     <div>
+        <h2>Новый пользователь:</h2>
         <form action="#" th:action="@{/users/add}" th:object="${user}" method="post">
-            <label for="name">Имя пользователя: </label>
-            <input type="text" th:field="*{name}" id="name" placeholder="Имя пользователя">
-            <br/>
-            <label for="email">Email: </label>
-            <input type="text" th:field="*{email}" id="email" placeholder="Email">
-            <br/>
+            <div>
+                <label for="name">Имя пользователя: </label>
+                <input type="text" th:field="*{name}" id="name" placeholder="Имя пользователя">
+            </div>
+            <div>
+                <label for="email">Email: </label>
+                <input type="email" th:field="*{email}" id="email" placeholder="Email">
+            </div>
+            <div>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password"/>
+            </div>
+            <div>
+                <label for="role">Роль: </label>
+                <select id="role"
+                        required
+                        th:field="*{roles}">
+                    <option value="0">-- Выберите роль</option>
+                    <option th:each="role : ${roles}"
+                            th:value="${role.id}"
+                            th:text="${role.name}">
+                    </option>
+                </select>
+            </div>
             <input type="submit" value="Создать">
         </form>
     </div>
