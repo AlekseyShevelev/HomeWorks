@@ -9,6 +9,7 @@ import ru.geekbrains.bookingservice.model.Reservation;
 import ru.geekbrains.bookingservice.model.User;
 import ru.geekbrains.bookingservice.repository.ReservationRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,7 +25,11 @@ public class ReservationService {
     }
 
     public List<Reservation> getReservationsByUserId(Long userId) {
-        return reservationRepository.findByUserId(userId);
+        return reservationRepository.findByUserIdOrderByServiceDate(userId);
+    }
+
+    public List<Reservation> getReservationsByEmployeeId(Long employeeId) {
+        return reservationRepository.findByEmployeeId(employeeId);
     }
 
     public void addReservation(ReservationRequest reservationRequest) {
@@ -39,5 +44,44 @@ public class ReservationService {
         reservation.setServiceDate(reservationRequest.getServiceDate());
 
         reservationRepository.save(reservation);
+    }
+
+    public String validateReservationRequest(ReservationRequest reservationRequest) {
+        String message = null;
+
+        if (reservationRequest.getServiceDate().isBefore(LocalDateTime.now())) {
+            message = "Дата не может быть в прошлом";
+        }
+
+        List<Reservation> reservations = getReservationsByEmployeeId(reservationRequest.getEmployeeId());
+
+        LocalDateTime curStartDate = reservationRequest.getServiceDate();
+        int duration = operationService.getOperationById(reservationRequest.getOperationId()).getDuration();
+        LocalDateTime curEndDate = curStartDate.plusMinutes(duration);
+
+        boolean hasConflict = false;
+        LocalDateTime startDate, endDate;
+
+        for (Reservation reservation : reservations) {
+            startDate = reservation.getServiceDate();
+            duration = operationService.getOperationById(reservation.getOperation().getId()).getDuration();
+            endDate = startDate.plusMinutes(duration);
+
+            if (startDate.isAfter(curStartDate) && startDate.isBefore(curEndDate)) {
+                hasConflict = true;
+                break;
+            }
+
+            if (endDate.isAfter(curStartDate) && endDate.isBefore(curEndDate)) {
+                hasConflict = true;
+                break;
+            }
+        }
+
+        if (hasConflict) {
+            message = "Выбранное время занято";
+        }
+
+        return message;
     }
 }

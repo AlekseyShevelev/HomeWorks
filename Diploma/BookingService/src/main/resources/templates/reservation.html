@@ -10,9 +10,13 @@
 <div>
     <h2>Онлайн-запись</h2>
     <h3>Для бронирования выберите мастера, услугу и время:</h3>
-    <div th:replace="~{page-templates :: main-text}"></div>
-
     <form action="#" th:action="@{/reservations/add}" th:object="${reservationRequest}" method="post">
+        <div th:if="${#fields.hasAnyErrors()}">
+            <ul style="color:red">
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            </ul>
+        </div>
+        <div th:replace="~{page-templates :: main-text}"></div>
         <div>
             <label for="employee">Мастер: </label>
             <select id="employee"
@@ -42,7 +46,6 @@
             <input
                     type="datetime-local"
                     id="serviceDate"
-                    placeholder="Дата"
                     required
                     th:field="*{serviceDate}" >
         </div>

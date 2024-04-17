@@ -5,6 +5,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.bookingservice.configurations.MyUserDetails;
 import ru.geekbrains.bookingservice.dto.ReservationRequest;
@@ -66,10 +68,28 @@ public class ReservationController {
     @PostMapping("/add")
     public String addReservation(
             Authentication authentication,
-            @ModelAttribute("reservation") ReservationRequest reservationRequest) {
+            @ModelAttribute("reservationRequest") ReservationRequest reservationRequest,
+            BindingResult bindingResult,
+            Model model) {
 
         User user = ((MyUserDetails) authentication.getPrincipal()).getUser();
         reservationRequest.setUserId(user.getId());
+
+        String errMessage = reservationService.validateReservationRequest(reservationRequest);
+        if (errMessage != null) {
+            ObjectError error = new ObjectError("validationError", errMessage);
+            bindingResult.addError(error);
+        }
+        if (bindingResult.hasErrors()) {
+            List<Employee> employees = employeeService.getAllEmployees();
+            model.addAttribute("employees", employees);
+
+            List<Operation> operations = operationService.getAllOperations();
+            model.addAttribute("operations", operations);
+
+            return "reservation";
+        }
+
         reservationService.addReservation(reservationRequest);
 
         return "redirect:/reservations";

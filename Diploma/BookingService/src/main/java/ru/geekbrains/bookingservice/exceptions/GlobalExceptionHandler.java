@@ -13,17 +13,13 @@ import java.util.logging.Logger;
 public class GlobalExceptionHandler {
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    //TODO можно убрать?
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleAllExceptions(Exception ex, WebRequest request) {
-        // Создание записи лога
         String logMessage = String.format("Exception: %s, message: %s, request: %s",
                 ex.getClass().getName(), ex.getMessage(), request.getDescription(false));
 
-        // Запись лога
         logger.log(Level.FINE, logMessage, ex);
 
-        // Возврат ответа с описанием ошибки
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
